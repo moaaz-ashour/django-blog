@@ -2,3 +2,19 @@
 {% block content %}
 <h1>Home Page</h1>
 {% endblock content %}
+
+{% block sidebar %}
+<div class="col-md-4">
+    <div class="content-section">
+        <h3>Blog Sidebar</h3>
+        <p class='text-muted'>Blog Side Bar items go here..
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Latest Posts</li>
+                <li class="list-group-item list-group-item-light">Announcements</li>
+                <li class="list-group-item list-group-item-light">Calendars</li>
+                <li class="list-group-item list-group-item-light">etc</li>
+            </ul>
+        </p>
+    </div>
+</div>
+{% endblock sidebar %}
