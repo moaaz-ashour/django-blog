@@ -35,8 +35,15 @@
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="#">Login</a>
-                        <a class="nav-item nav-link" href="#">Register</a>
+                        <!-- is User authenticated? -->
+                        <!-- Django provides User variable which contains the current User -->
+                        <!-- User variable has an attribute called "is_authenticated" -->
+                        {% if user.is_authenticated %}
+                            <a class="nav-item nav-link" href="{% url 'logout'  %}">Logout</a>
+                        {% else %}
+                            <a class="nav-item nav-link" href="{% url 'login'  %}">Login</a>
+                            <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
