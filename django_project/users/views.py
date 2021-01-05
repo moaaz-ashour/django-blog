@@ -1,6 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 
 def register(request):
-    form = UserCreationForm()
+    if request.method == 'POST':
+        # instantiate form with post data
+        form = UserCreationForm(request.POST)
+        # validate the form when submitted
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            return redirect('blog-home')
+    else:
+        form = UserCreationForm()
     return render(request, 'users/register.html', {'form': form})
