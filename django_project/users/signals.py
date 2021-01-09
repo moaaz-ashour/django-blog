@@ -10,6 +10,8 @@ from .models import Profile
 
     create_profile: a function which runs everytime a User is created decorated with @receiver
 """
+# Note:
+# Signal receivers are connected in the ready() method of your application configuration class (users > apps.py). Since we're using the receiver() decorator, we need to import the signals submodule inside ready().
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
