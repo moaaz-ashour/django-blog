@@ -10,8 +10,7 @@ def home(request):
     return render(request, 'blog/home.html', context)
 
 class PostListView(ListView):
-    pass
-
+    model = Post
 
 def about(request):
     return render(request, 'blog/about.html')
