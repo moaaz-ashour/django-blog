@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import Profile
+
 
 
 STATES = (
@@ -42,3 +44,14 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         # order of fields to be displayed in the form
         fields = ['username', 'email']
+
+class ProfileUpdateForm(forms.ModelForm):
+    """
+        A form to update the profile image.
+    """
+    image = forms.ImageField()
+
+    class Meta:
+        # specify the model you want the form to interact with
+        model = Profile
+        fields = ['image']
