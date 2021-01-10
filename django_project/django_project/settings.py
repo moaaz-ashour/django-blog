@@ -48,6 +48,7 @@ MY_APPS = [
     'blog',
     'users',
     'crispy_forms',
+    'django_cleanup',
 ]
 
 INSTALLED_APPS.extend(MY_APPS)
