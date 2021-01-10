@@ -49,7 +49,7 @@ class PostCreatelView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class PostUpdatelView(UpdateView):
+class PostUpdatelView(LoginRequiredMixin, UpdateView):
     """
         should use the same template as PostCreateView, i.e. post_form.html
     """
