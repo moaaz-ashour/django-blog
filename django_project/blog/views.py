@@ -38,6 +38,13 @@ class PostCreatelView(CreateView):
     # CreateView expected the form to be called "form"
     model = Post
     fields = ['title', 'content']
-    
+
+    # override form_valid method to pass the logged-in User
+    def form_valid(self, form):
+        # before submitting (validating) the form, take the instance and set its author to the current logged-in user  
+        form.instance.author = self.request.user
+        # validate the form by running the form_valid method on parent class
+        return super().form_valid(form)
+
 def about(request):
     return render(request, 'blog/about.html')
