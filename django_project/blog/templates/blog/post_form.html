@@ -1,0 +1,28 @@
+<!--  
+    - By default, the template name for this view is to be the name of the model followed by underscore "form".. in our case, post_form.html
+    - This one will share a template with the update view 
+
+ -->
+
+ {% extends 'blog/base.html' %}
+ {% load crispy_forms_tags %}
+ 
+ {% block content %}
+     <div class="content-section">
+         <form method="POST">
+             {% csrf_token %}
+             <fieldset class='form-group'>
+                 <legend class='border-bottom mb-4'>
+                     Blog Post
+                 </legend>
+                 {{ form|crispy }}
+             </fieldset>
+             <div class='form-group'>
+                 <button class='btn btn-outline-info' type='submit'>
+                     Create Post
+                 </button>
+             </div>
+         </form>
+     </div>
+ {% endblock content %}
+ 
