@@ -4,7 +4,8 @@ from django.views.generic import (
     ListView, 
     DetailView,
     CreateView,
-    UpdateView
+    UpdateView,
+    DeleteView
 )
 from .models import Post
 
@@ -69,5 +70,16 @@ class PostUpdatelView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         # check if current User is Author of the post:
         return self.request.user == post.author
 
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+
+    def test_func(self):
+        """
+            UserPassesTestMixin will run this function to handle unauthorized User access
+        """
+        # to get the exact post user wants to update, we use method of UpdateView
+        post = self.get_object()
+        # check if current User is Author of the post:
+        return self.request.user == post.author
 def about(request):
     return render(request, 'blog/about.html')
