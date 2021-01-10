@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Post
 
 
@@ -22,6 +22,10 @@ class PostListView(ListView):
 
     #4. change order of displayed posts
     ordering = ['-date_posted']
+
+class PostDetailView(DetailView):
+    model = Post
+    # this is gonna be looking for blog/post_detail.html by default and expecting the context of this template to be called "object"
 
 def about(request):
     return render(request, 'blog/about.html')
