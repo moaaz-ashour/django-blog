@@ -3,9 +3,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 
-# a form which inherits from UserCreationForm
-# use this form in the view instead of the UserCreationForm
-
 STATES = (
     ('', 'Choose...'),
     ('BY', 'Bayern'),
@@ -16,7 +13,10 @@ STATES = (
     ('NW', 'North Rhine-Westphalia')
 )
 class UserRegisterForm(UserCreationForm):
-    # add email field
+    """
+        a form which inherits from UserCreationForm
+        use this form in the view instead of the UserCreationForm
+    """
     email = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'placeholder': 'Email'}))
     city = forms.CharField()
     state = forms.ChoiceField(choices=STATES)
@@ -27,4 +27,18 @@ class UserRegisterForm(UserCreationForm):
         model = User
         # order of fields to be displayed in the form
         fields = ['username', 'email', 'password1', 'password2', 'city', 'state', 'zip_code']
-        
+
+
+class UserUpdateForm(forms.ModelForm):
+    """
+        A form which updates our User model.
+        Model Form: allows to create a form which works with a specific database model.
+        # We want to update the username and email only.
+    """
+    username = forms.Field(label='username', widget=forms.TextInput(attrs={'placeholder': 'Enter new username'}))
+    email = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'placeholder': 'Enter new email'}))
+    class Meta:
+        # specify the model you want the form to interact with
+        model = User
+        # order of fields to be displayed in the form
+        fields = ['username', 'email']
