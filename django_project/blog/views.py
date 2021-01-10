@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
     ListView, 
     DetailView,
@@ -31,7 +32,7 @@ class PostDetailView(DetailView):
     model = Post
     # this is gonna be looking for blog/post_detail.html by default and expecting the context of this template to be called "object"
 
-class PostCreatelView(CreateView):
+class PostCreatelView(LoginRequiredMixin, CreateView):
     # Note:
     # This one will share a template with the update view 
     # by default, the template name for this view is to be the name of the model followed by underscore "form".. in our case, post_form.html
