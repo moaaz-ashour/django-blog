@@ -72,7 +72,7 @@ class PostUpdatelView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-
+    success_url = '/'
     def test_func(self):
         """
             UserPassesTestMixin will run this function to handle unauthorized User access
