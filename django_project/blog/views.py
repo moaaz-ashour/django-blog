@@ -1,5 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import (
+    ListView, 
+    DetailView,
+    CreateView
+)
 from .models import Post
 
 
@@ -27,5 +31,13 @@ class PostDetailView(DetailView):
     model = Post
     # this is gonna be looking for blog/post_detail.html by default and expecting the context of this template to be called "object"
 
+class PostCreatelView(CreateView):
+    # Note:
+    # This one will share a template with the update view 
+    # by default, the template name for this view is to be the name of the model followed by underscore "form".. in our case, post_form.html
+    # CreateView expected the form to be called "form"
+    model = Post
+    fields = ['title', 'content']
+    
 def about(request):
     return render(request, 'blog/about.html')
