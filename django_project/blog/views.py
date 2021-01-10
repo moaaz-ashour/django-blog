@@ -3,7 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
     ListView, 
     DetailView,
-    CreateView
+    CreateView,
+    UpdateView
 )
 from .models import Post
 
@@ -45,6 +46,18 @@ class PostCreatelView(LoginRequiredMixin, CreateView):
         # before submitting (validating) the form, take the instance and set its author to the current logged-in user  
         form.instance.author = self.request.user
         # validate the form by running the form_valid method on parent class
+        return super().form_valid(form)
+
+
+class PostUpdatelView(UpdateView):
+    """
+        should use the same template as PostCreateView, i.e. post_form.html
+    """
+    model = Post
+    fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
         return super().form_valid(form)
 
 def about(request):
