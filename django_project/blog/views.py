@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     ListView, 
     DetailView,
@@ -49,7 +49,7 @@ class PostCreatelView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class PostUpdatelView(LoginRequiredMixin, UpdateView):
+class PostUpdatelView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """
         should use the same template as PostCreateView, i.e. post_form.html
     """
@@ -59,6 +59,15 @@ class PostUpdatelView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+    def test_func(self):
+        """
+            UserPassesTestMixin will run this function to handle unauthorized User access
+        """
+        # to get the exact post user wants to update, we use method of UpdateView
+        post = self.get_object()
+        # check if current User is Author of the post:
+        return self.request.user == post.author
 
 def about(request):
     return render(request, 'blog/about.html')
