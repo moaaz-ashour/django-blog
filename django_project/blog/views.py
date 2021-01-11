@@ -32,7 +32,7 @@ class PostListView(ListView):
     ordering = ['-date_posted']
 
     # set an attribute for pagination:
-    paginate_by = 2
+    paginate_by = 5
 class PostDetailView(DetailView):
     model = Post
     # this is gonna be looking for blog/post_detail.html by default and expecting the context of this template to be called "object"
