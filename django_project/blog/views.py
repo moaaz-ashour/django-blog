@@ -45,7 +45,7 @@ class UserPostsListView(ListView):
     def get_queryset(self):
         # get User associated with the username (which we're gonna get from the URL) and if user doesn't exists > 404
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Post.objects.filter(authour=user).order_by('-date_posted')
+        return Post.objects.filter(author=user).order_by('-date_posted')
 
 class PostDetailView(DetailView):
     model = Post
