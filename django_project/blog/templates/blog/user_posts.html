@@ -1,9 +1,8 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <!-- get username passed to the URL--> 
-
-    <h1>Posts by {{ view.kwargs.username }} </h1> 
+    <!-- get username passed to the URL |||  number of User posts --> 
+    <h1>Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1> 
 
 {% endblock content %}
 
