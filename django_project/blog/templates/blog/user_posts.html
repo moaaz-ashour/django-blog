@@ -1,7 +1,9 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <!-- ... --> 
+    <!-- get username passed to the URL--> 
+
+    <h1>Posts by {{ view.kwargs.username }} </h1> 
 
 {% endblock content %}
 
