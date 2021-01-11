@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 from django.views.generic import (
     ListView, 
     DetailView,
@@ -33,6 +34,10 @@ class PostListView(ListView):
 
     # set an attribute for pagination:
     paginate_by = 5
+
+class UserPostsListView(ListView):
+    pass
+
 class PostDetailView(DetailView):
     model = Post
     # this is gonna be looking for blog/post_detail.html by default and expecting the context of this template to be called "object"
