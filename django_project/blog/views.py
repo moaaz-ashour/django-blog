@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import (
@@ -36,7 +36,17 @@ class PostListView(ListView):
     paginate_by = 5
 
 class UserPostsListView(ListView):
-    pass
+    model = Post
+    template_name = 'blog/user_posts.html'
+    context_object_name = 'user_posts'
+    ordering = ['-date_posted']
+    paginate_by = 5
+
+    # change the query which the ListView would make by overriding get_query_set:
+    def get_query_set(self):
+        # get User associated with the username (which we're gonna get from the URL) and if user doesn't exists > 404
+        user = get_object_or_404(User, username=self.kwarges.get('username'))
+        return Post.objects.filter(authour=user)
 
 class PostDetailView(DetailView):
     model = Post
