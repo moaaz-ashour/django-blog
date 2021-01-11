@@ -39,14 +39,13 @@ class UserPostsListView(ListView):
     model = Post
     template_name = 'blog/user_posts.html'
     context_object_name = 'user_posts'
-    ordering = ['-date_posted']
     paginate_by = 5
 
     # change the query which the ListView would make by overriding get_query_set:
     def get_query_set(self):
         # get User associated with the username (which we're gonna get from the URL) and if user doesn't exists > 404
         user = get_object_or_404(User, username=self.kwarges.get('username'))
-        return Post.objects.filter(authour=user)
+        return Post.objects.filter(authour=user).order_by('-date_posted')
 
 class PostDetailView(DetailView):
     model = Post
