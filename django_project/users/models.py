@@ -10,7 +10,7 @@ class Profile(models.Model):
     
     #override save() method
     def save(self, *args, **kwargs):
-        super(Profile, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
         # get profile image of current instance
         img = Image.open(self.image.path)
         if img.height > 300 or img.width > 300:
