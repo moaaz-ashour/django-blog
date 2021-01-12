@@ -149,3 +149,15 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config('EMAIL_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
+
+# Django Storages settings to upload media files to S3.
+# S3 BUCKET CONFIG
+# https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html
+AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = config("AWS_STORAGE_BUCKET_NAME")
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None # default is None which means the file will inherit the bucket's permission
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
