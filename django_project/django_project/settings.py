@@ -134,7 +134,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # for static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # for static files (Heroku)
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # full Path to where you want Django to save uploaded files.
 MEDIA_URL = '/media/'  # public URL of MEDIA_ROOT directory
