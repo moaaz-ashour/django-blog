@@ -34,7 +34,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # 'blog.apps.BlogConfig', see blog> apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,8 +43,8 @@ INSTALLED_APPS = [
 ]
 
 MY_APPS = [
-    'blog',
-    'users',
+    'blog.apps.BlogConfig',
+    'users.apps.UsersConfig',
     'crispy_forms',
     'django_cleanup',
     'storages'
