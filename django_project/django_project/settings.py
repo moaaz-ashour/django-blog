@@ -24,10 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+load_dotenv()
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (str(os.getenv('DEBUG_VALUE')) == 'True')
 
 ALLOWED_HOSTS = []
 
@@ -149,15 +150,15 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = config('EMAIL_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
+EMAIL_HOST_USER = str(os.getenv('EMAIL_USER'))
+EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_PASSWORD'))
 
 # Django Storages settings to upload media files to S3.
 # S3 BUCKET CONFIG
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html
-AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
-AWS_STORAGE_BUCKET_NAME = config("AWS_STORAGE_BUCKET_NAME")
+AWS_ACCESS_KEY_ID = str(os.getenv("AWS_ACCESS_KEY_ID"))
+AWS_SECRET_ACCESS_KEY = str(os.getenv("AWS_SECRET_ACCESS_KEY"))
+AWS_STORAGE_BUCKET_NAME = cstr(os.getenv("AWS_STORAGE_BUCKET_NAME"))
 
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None # default is None which means the file will inherit the bucket's permission
