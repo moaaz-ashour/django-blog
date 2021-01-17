@@ -163,4 +163,4 @@ AWS_STORAGE_BUCKET_NAME = cstr(os.getenv("AWS_STORAGE_BUCKET_NAME"))
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None # default is None which means the file will inherit the bucket's permission
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'django_blog.storages.MediaStore' # see storages.py
