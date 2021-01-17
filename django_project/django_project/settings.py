@@ -14,7 +14,7 @@ import os
 import django_on_heroku
 from pathlib import Path
 from django.urls import reverse_lazy
-from decouple import config
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
