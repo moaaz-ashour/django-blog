@@ -154,13 +154,19 @@ EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_PASSWORD'))
 
 
 # Django Storages settings to upload media files to S3.
+DEFAULT_FILE_STORAGE = 'django_blog.storages.MediaStore' # see storages.py
+
 # S3 BUCKET CONFIG
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html
 AWS_ACCESS_KEY_ID = str(os.getenv("AWS_ACCESS_KEY_ID"))
 AWS_SECRET_ACCESS_KEY = str(os.getenv("AWS_SECRET_ACCESS_KEY"))
-AWS_STORAGE_BUCKET_NAME = cstr(os.getenv("AWS_STORAGE_BUCKET_NAME"))
+AWS_STORAGE_BUCKET_NAME = str(os.getenv("AWS_STORAGE_BUCKET_NAME"))
+AWS_S3_REGION_NAME = 'eu-central-1'
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com"
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 
 AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None # default is None which means the file will inherit the bucket's permission
-
-DEFAULT_FILE_STORAGE = 'django_blog.storages.MediaStore' # see storages.py
+AWS_DEFAULT_ACL = 'public-read' # default access is None which means the file will inherit the bucket's permission
+AWS_LOCATION = 'static/'
+AWS_S3_FILE_OVERWRITE = False
+AWS_S3_SIGNATURE_VERSION = 's3v4'
