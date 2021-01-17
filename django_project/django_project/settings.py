@@ -127,16 +127,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-STATIC_URL = '/static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # for static files (Heroku)
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # full Path to where you want Django to save uploaded files.
-MEDIA_URL = '/media/'  # public URL of MEDIA_ROOT directory
-
 # for django-crispy-forms=
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -171,6 +161,20 @@ AWS_LOCATION = 'static/'
 AWS_S3_FILE_OVERWRITE = False
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 
+
+
+# Static files (CSS, JavaScript, Images) - FOR DEPLOYMENT
+# https://docs.djangoproject.com/en/3.1/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # for collectstatic command .. for static files (Heroku)
+STATIC_URL = 'https://%s/%s' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION) # when you run python collectstatic, django will get all project static files and upload them to AWS bucket.
+STATICFILES_DIR = [
+    os.path.join(BASE_DIR, 'blog/static')
+]
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # full Path to where you want Django to save uploaded files.
+# MEDIA_URL = '/media/'  # public URL of MEDIA_ROOT directory
 
 # Configure Django App for Heroku
 # These settings automatically configure DATABASE_URL, ALLOWED_HOSTS, WhiteNoise (for static assets), Logging, and Heroku CI for the application.
