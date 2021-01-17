@@ -127,14 +127,14 @@ USE_L10N = True
 USE_TZ = True
 
 
-# for django-crispy-forms=
+## for django-crispy-forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Login URL and redirection
 LOGIN_REDIRECT_URL = 'blog-home'
 LOGIN_URL = reverse_lazy('login')
 
-# SMTP Configs:
+## SMTP Configs:
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -143,10 +143,7 @@ EMAIL_HOST_USER = str(os.getenv('EMAIL_USER'))
 EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_PASSWORD'))
 
 
-# Django Storages settings to upload media files to S3.
-DEFAULT_FILE_STORAGE = 'django_blog.storages.MediaStore' # see storages.py
-
-# S3 BUCKET CONFIG
+## S3 BUCKET CONFIG
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html
 AWS_ACCESS_KEY_ID = str(os.getenv("AWS_ACCESS_KEY_ID"))
 AWS_SECRET_ACCESS_KEY = str(os.getenv("AWS_SECRET_ACCESS_KEY"))
@@ -161,9 +158,11 @@ AWS_LOCATION = 'static/'
 AWS_S3_FILE_OVERWRITE = False
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 
+## Django Storages settings to upload media files to S3.
+DEFAULT_FILE_STORAGE = 'django_blog.storages.MediaStore' # see storages.py
 
 
-# Static files (CSS, JavaScript, Images) - FOR DEPLOYMENT
+## Static files (CSS, JavaScript, Images) - FOR DEPLOYMENT
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # for collectstatic command .. for static files (Heroku)
 STATIC_URL = 'https://%s/%s' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION) # when you run python collectstatic, django will get all project static files and upload them to AWS bucket.
@@ -172,10 +171,9 @@ STATICFILES_DIR = [
 ]
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # full Path to where you want Django to save uploaded files.
 # MEDIA_URL = '/media/'  # public URL of MEDIA_ROOT directory
 
-# Configure Django App for Heroku
+## Configure Django App for Heroku
 # These settings automatically configure DATABASE_URL, ALLOWED_HOSTS, WhiteNoise (for static assets), Logging, and Heroku CI for the application.
 django_on_heroku.settings(locals(), staticfiles=False)
