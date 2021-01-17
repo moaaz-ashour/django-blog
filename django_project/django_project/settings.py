@@ -158,7 +158,7 @@ AWS_S3_FILE_OVERWRITE = False
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 
 ## Django Storages settings to upload media files to S3.
-DEFAULT_FILE_STORAGE = 'django_blog.storages.MediaStore' # see storages.py
+DEFAULT_FILE_STORAGE = 'django_project.storages.MediaStore' # see storages.py
 
 
 ## Static files (CSS, JavaScript, Images) - FOR DEPLOYMENT
