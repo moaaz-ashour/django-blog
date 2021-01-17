@@ -18,9 +18,10 @@
                  {{ form|crispy }}
              </fieldset>
              <div class='form-group'>
-                 <button class='btn btn-outline-info' type='submit'>
-                     Create Post
+                 <button class='btn btn-primary active' type='submit'>
+                    Create Post
                  </button>
+                <a href="{% url 'blog-home' %}" class="btn btn-outline-secondary">Cancel</a>
              </div>
          </form>
      </div>
