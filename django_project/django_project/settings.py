@@ -170,3 +170,8 @@ AWS_DEFAULT_ACL = 'public-read' # default access is None which means the file wi
 AWS_LOCATION = 'static/'
 AWS_S3_FILE_OVERWRITE = False
 AWS_S3_SIGNATURE_VERSION = 's3v4'
+
+
+# Configure Django App for Heroku
+# These settings automatically configure DATABASE_URL, ALLOWED_HOSTS, WhiteNoise (for static assets), Logging, and Heroku CI for the application.
+django_on_heroku.settings(locals(), staticfiles=False)
