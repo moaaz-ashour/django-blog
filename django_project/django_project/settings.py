@@ -30,8 +30,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (str(os.getenv('DEBUG_VALUE')) == 'True') # value as bool.
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["django-blog-2021.herokuapp.com"]
 
 # Application definition
 INSTALLED_APPS = [
