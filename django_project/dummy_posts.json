@@ -1,40 +1,7 @@
 /*
-DO NOT FORGET TO REMOVE THIS COMMENT BEFORE RUNNING THE FOLLOWING IN THE SHELL
-For more information, read README.md file at https://github.com/moaaz-ashour/django-blog/blob/master/django_project/README.md
-========================
-Create dummy posts for users (5 users in this json based on author_id).
-Notes:
-1. Please create at least 5 users.
-2. to create an Admin User, change user.is_superuser to True.
-   Else, you can create Super User and define username and password by typing the following in the shell later (though it is recommended to do that at the very first beginning): python3 manage.py createsuperuser
-
-run shell in terminal: python3 manage.py shell
-
-Type the following (fon't forget indentation in for loops):
-========================
-
-import json
-from django.contrib.auth.models import User
-from blog.models import Post
-
-user = User.objects.create_user('Adrian_Holovaty', password='Holovaty15', email='adrian@django.com')
-user.is_superuser=False
-user.is_staff=True
-user.save()
-
-with open('dummy_posts.json') as f:
-  posts = json.load(f)
-
-for po in posts:
-  post = Post(title=po['title'], content=po['content'], author_id=user.id)
-  post.save()
-
-  exit()
-
-========================
-
+Please read the instructions on how to create dummy blog posts first at 
+https://github.com/moaaz-ashour/django-blog/tree/master/django_project#create-dummy-posts
 */
-
 
 [
   {
