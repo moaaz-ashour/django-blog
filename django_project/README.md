@@ -16,6 +16,7 @@ Some of the functionalities you would see in this app : <br>
     * User authentication for routes with login and logout functionalities. <br>
     * Reset user password email. See note #4 below. <br>
     * Using django-on-heroku to set the settings for deploying the app to Heroku.
+    * Python shell commands to populate the blog with dummy posts for a specific User.
 
 ## Installation Guide
 
